@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kirana Sport Hub – Perlengkapan Olahraga</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--indigo:#1d2b4f;--ink:#12182b;--paper:#eef1f6;--card:#fff;--stitch:#f0b323;--line:#cfd6e4;--ok:#1f8a5b;--bad:#c2410c;
+--head:'Bricolage Grotesque',system-ui,sans-serif;--body:'IBM Plex Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0}
+body{font:15px/1.5 var(--body);background:var(--paper);color:var(--ink)}
+header{background:var(--indigo);color:#fff;padding:28px 20px 24px;border-bottom:4px dashed var(--stitch)}
+.wrap{max-width:1100px;margin:0 auto}
+header h1{font:800 clamp(30px,6vw,52px)/1 var(--head);letter-spacing:-.02em}
+header p{margin-top:8px;color:#c4cde4;max-width:60ch}
+header p.slogan{font:700 clamp(16px,3vw,22px)/1.3 var(--head);color:var(--stitch);margin-top:10px;letter-spacing:.01em}
+main{padding:24px 20px 60px}
+section{margin-top:28px}
+h2{font:700 22px var(--head);margin-bottom:10px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.bar label{display:flex;flex-direction:column;font-size:13px;gap:3px;color:#4a5573}
+select,input{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink);min-width:130px}
+button{font:500 14px var(--body);padding:9px 14px;border:0;border-radius:6px;background:var(--indigo);color:#fff;cursor:pointer}
+button:hover{background:#2c3f70}
+button.alt{background:transparent;color:var(--indigo);border:1px solid var(--indigo)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--stitch);outline-offset:1px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.grup{margin-top:22px}
+.gh{font:700 20px var(--head);margin-bottom:12px;display:flex;align-items:baseline;gap:10px;border-bottom:2px dashed var(--stitch);padding-bottom:6px}
+.gh span{font:400 13px var(--mono);color:#5a6584}
+.item.hit{border:2px solid var(--stitch);box-shadow:0 0 0 3px #f0b32344}
+.tag{background:var(--indigo);color:#c4cde4;font:12px var(--mono);padding:6px 10px;display:flex;justify-content:space-between}
+.item .b{padding:12px;display:flex;flex-direction:column;gap:4px;flex:1}
+.item h3{font:700 18px var(--head)}
+.item small{color:#5a6584}
+.price{font:700 17px var(--head);margin-top:4px}
+.item button{margin-top:auto}
+.logs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:800px){.logs{grid-template-columns:1fr}}
+pre{font:12.5px/1.55 var(--mono);background:#0f1527;color:#d7def0;border-radius:10px;padding:14px;height:320px;overflow:auto;white-space:pre-wrap}
+pre .h{color:var(--stitch);font-weight:500}.t,.ok{color:#6fe0a8}.no{color:#ff9a6b}.sum{color:#8fb7ff}
+.cap{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font:13px var(--mono)}
+.node{border:2px solid var(--indigo);border-radius:8px;background:#fff;padding:8px 10px}
+.node b{font-family:var(--head);font-size:15px}
+.node button{padding:3px 8px;font-size:12px;margin-top:4px}
+.arrow{color:var(--indigo);font-weight:700}
+.null{color:#8a93ad}
+code{font:13px var(--mono);background:#e4e9f3;padding:1px 5px;border-radius:4px}
+.concept{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.concept p{font-size:14px;margin-top:6px}
+.msg{font-size:13px;margin-top:8px;color:#4a5573}
+
+.thumb{background:#e4e9f3;display:flex;justify-content:center;align-items:center;height:130px;padding:10px}
+.thumb svg,.thumb img{height:100%;width:auto;max-width:100%;object-fit:contain}
+.node .thumb{height:48px;padding:4px;border-radius:6px;margin-bottom:6px}
+.item button:disabled{background:#9aa3bb;cursor:not-allowed}
+.co{display:grid;grid-template-columns:1.5fr 1fr;gap:14px;align-items:start}
+@media(max-width:800px){.co{grid-template-columns:1fr}}
+.form{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.form label{display:flex;flex-direction:column;font-size:13px;gap:3px;color:#4a5573}
+.form input,.form select{width:100%}
+.sum{border-top:1px dashed var(--line);margin-top:4px;padding-top:8px;font-size:14px}
+.sum div{display:flex;justify-content:space-between}
+.sum .tot{font:700 18px var(--head);margin-top:4px}
+.qty{display:flex;align-items:center;gap:6px;margin-top:4px}
+.qty button{padding:2px 9px;font-size:14px}
+dialog{border:0;border-radius:12px;padding:0;max-width:380px;width:92%;box-shadow:0 20px 60px #0006}
+dialog::backdrop{background:#12182b99}
+.struk{padding:22px;font:13px/1.6 var(--mono);background:#fff}
+.struk h3{font:800 22px var(--head);text-align:center}
+.struk .c{text-align:center;color:#5a6584}
+.struk hr{border:0;border-top:1px dashed #8a93ad;margin:10px 0}
+.struk .r{display:flex;justify-content:space-between;gap:8px}
+.struk .big{font-weight:500;font-size:15px}
+.struk-act{display:flex;gap:8px;padding:0 22px 20px;background:#fff}
+.rw{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.rw:last-child{border:0}
+@media print{body *{visibility:hidden}#struk,#struk *{visibility:visible}#struk{position:absolute;left:0;top:0;box-shadow:none}.struk-act{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>Kirana Sport Hub</h1>
+<p class="slogan">Your Ultimate Destination for Active Living</p>
+<p>Lengkapi gaya hidup aktifmu di sini! Menyediakan beragam pilihan kebutuhan olahraga, seperti pakaian, sepatu, aksesori, dan alat latihan berkualitas untuk pria dan wanita.</p>
+</div></header>
+
+<main class="wrap">
+
+<section>
+<h2>Katalog produk</h2>
+<div class="panel">
+  <div class="bar">
+    <label>Urutkan berdasarkan
+      <select id="kunci"><option value="harga">Harga</option><option value="nama">Nama</option><option value="stok">Stok</option></select></label>
+    <label>Arah
+      <select id="arah"><option value="asc">Naik (A–Z, murah–mahal)</option><option value="desc">Turun</option></select></label>
+    <label>Metode sorting
+      <select id="metodeSort"><option value="bubble">Bubble Sort</option><option value="selection">Selection Sort</option></select></label>
+    <button id="btnSort">Urutkan</button>
+    <button id="btnReset" class="alt">Kembalikan urutan awal</button>
+  </div>
+  <div class="bar" style="margin-top:14px">
+    <label>Metode searching
+      <select id="metodeCari"><option value="linear">Linear Search (nama)</option><option value="binary">Binary Search (harga)</option></select></label>
+    <label>Kata kunci
+      <input id="q" placeholder="mis. sepatu"></label>
+    <button id="btnCari">Cari</button>
+  </div>
+  <p class="msg" id="info">Binary Search butuh data yang sudah terurut naik berdasarkan harga. Produk dikelompokkan per jenis; urutan sorting berlaku di dalam tiap kelompok.</p>
+</div>
+<div id="grid" style="margin-top:6px"></div>
+</section>
+
+<section>
+<h2>Log proses</h2>
+<div class="logs">
+  <div><div class="cap"><b>Log Sorting</b><button class="alt" data-clear="logSort">Bersihkan</button></div><pre id="logSort">Belum ada proses sorting.</pre></div>
+  <div><div class="cap"><b>Log Searching</b><button class="alt" data-clear="logCari">Bersihkan</button></div><pre id="logCari">Belum ada proses pencarian.</pre></div>
+</div>
+</section>
+
+<section>
+<h2>Keranjang dan checkout</h2>
+<div class="co">
+  <div class="panel">
+    <b>Keranjang (linked list)</b>
+    <div class="chain" id="chain" style="margin-top:10px"></div>
+    <p class="msg" id="pesan"></p>
+  </div>
+  <div class="panel">
+    <b>Checkout</b>
+    <div class="form">
+      <label>Nama pembeli<input id="nama" placeholder="Nama lengkap"></label>
+      <label>Alamat pengiriman<input id="alamat" placeholder="Jalan, kota"></label>
+      <label>Metode pembayaran
+        <select id="bayar"><option>Transfer Bank</option><option>QRIS</option><option>Bayar di Tempat (COD)</option></select></label>
+      <div class="sum" id="ringkasan"></div>
+      <button id="btnCheckout">Checkout</button>
+    </div>
+  </div>
+</div>
+</section>
+
+<section>
+<h2>Riwayat transaksi</h2>
+<div class="panel" id="riwayat"></div>
+</section>
+
+</main>
+
+<dialog id="struk">
+  <div class="struk" id="strukIsi"></div>
+  <div class="struk-act"><button id="btnCetak">Cetak struk</button><button id="btnTutup" class="alt">Tutup</button></div>
+</dialog>
+
+<script>
+/* ============ GAMBAR PRODUK (SVG) ============
+   Bisa diganti foto asli: isi dengan path file, mis. "images/snapback.jpg" */
+const GAMBAR = {
+ 1: `<svg viewBox="0 0 120 90" role="img" aria-label="Jersey Dri-Fit Pria"><path d="M40 12L16 26l10 18 12-6v44h44V38l12 6 10-18-24-14c-3 9-9 13-20 13s-17-4-20-13z" fill="#1d2b4f" stroke="#12182b" stroke-width="3" stroke-linejoin="round"/><path d="M44 12c3 9 9 13 16 13s13-4 16-13" fill="none" stroke="#f0b323" stroke-width="3"/><path d="M38 50h44" stroke="#f0b323" stroke-width="4"/><path d="M38 60h44" stroke="#f0b323" stroke-width="2" stroke-dasharray="4 3"/></svg>`,
+ 2: `<svg viewBox="0 0 120 90" role="img" aria-label="Sports Bra Wanita"><path d="M40 10L34 40M80 10l6 30" stroke="#1d2b4f" stroke-width="4.5" stroke-linecap="round"/><path d="M30 38c10 8 20 8 30-2 10 10 20 10 30 2l-4 32c-8 6-44 6-52 0z" fill="#d9577f" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><path d="M36 62h48" stroke="#f0b323" stroke-width="4"/></svg>`,
+ 3: `<svg viewBox="0 0 120 90" role="img" aria-label="Celana Training Pria"><path d="M36 8h48l5 76H66L60 38l-6 46H31z" fill="#2c3f70" stroke="#12182b" stroke-width="2.5" stroke-linejoin="round"/><path d="M36 8h48v9H36z" fill="#1d2b4f"/><path d="M39 20L35 80M81 20l4 60" stroke="#f0b323" stroke-width="3"/><path d="M52 13h16" stroke="#f0b323" stroke-width="2" stroke-dasharray="3 2"/></svg>`,
+ 4: `<svg viewBox="0 0 120 90" role="img" aria-label="Legging Olahraga Wanita"><path d="M38 8h44l-2 76H66L60 34l-6 50H40z" fill="#6b4a9e" stroke="#2a1d4a" stroke-width="2.5" stroke-linejoin="round"/><path d="M38 8h44v8H38z" fill="#d9577f"/><path d="M42 20L41 80M78 20l1 60" stroke="#f0b323" stroke-width="2.5"/></svg>`,
+ 5: `<svg viewBox="0 0 120 90" role="img" aria-label="Sepatu Lari"><path d="M10 64V48c0-4 4-6 8-4l16 8c6-6 12-12 16-20l11 6c3 10 16 15 34 19 9 2 13 6 13 11v6H10z" fill="#fff" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><rect x="8" y="66" width="106" height="10" rx="5" fill="#f0b323" stroke="#1d2b4f" stroke-width="2"/><path d="M52 40l6 4M58 34l6 4M64 42l-5-4" stroke="#1d2b4f" stroke-width="2.5" stroke-linecap="round"/><path d="M20 56c20 4 44 2 66-4" stroke="#1d2b4f" stroke-width="4" stroke-linecap="round" fill="none"/></svg>`,
+ 6: `<svg viewBox="0 0 120 90" role="img" aria-label="Matras Yoga"><path d="M34 25h60a14 22 0 0 1 0 44H34z" fill="#3cb5a3" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><ellipse cx="34" cy="47" rx="16" ry="22" fill="#3cb5a3" stroke="#1d2b4f" stroke-width="3"/><ellipse cx="34" cy="47" rx="9" ry="13" fill="none" stroke="#1d2b4f" stroke-width="2.5"/><ellipse cx="34" cy="47" rx="3" ry="5" fill="#1d2b4f"/><path d="M66 25v44" stroke="#f0b323" stroke-width="5"/></svg>`,
+ 7: `<svg viewBox="0 0 120 90" role="img" aria-label="Dumbbell 5 kg"><rect x="40" y="41" width="40" height="8" fill="#c4cde4" stroke="#1d2b4f" stroke-width="2.5"/><rect x="28" y="24" width="12" height="42" rx="3" fill="#1d2b4f"/><rect x="80" y="24" width="12" height="42" rx="3" fill="#1d2b4f"/><rect x="18" y="30" width="10" height="30" rx="3" fill="#2c3f70" stroke="#1d2b4f" stroke-width="2"/><rect x="92" y="30" width="10" height="30" rx="3" fill="#2c3f70" stroke="#1d2b4f" stroke-width="2"/><path d="M34 28v34M86 28v34" stroke="#f0b323" stroke-width="2.5"/></svg>`,
+ 8: `<svg viewBox="0 0 120 90" role="img" aria-label="Botol Minum Sport"><rect x="50" y="8" width="20" height="10" rx="3" fill="#1d2b4f"/><path d="M50 18h20l6 12v48a6 6 0 0 1-6 6H50a6 6 0 0 1-6-6V30z" fill="#6fb2e8" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><path d="M46 42h28v16H46z" fill="#f0b323"/><path d="M52 66h16" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>`,
+ 9: `<svg viewBox="0 0 120 90" role="img" aria-label="Celana Pendek Lari Pria"><path d="M30 16h60l8 46H66L60 40l-6 22H22z" fill="#2c3f70" stroke="#12182b" stroke-width="2.5" stroke-linejoin="round"/><path d="M30 16h60v8H30z" fill="#1d2b4f"/><path d="M33 28l-6 30M87 28l6 30" stroke="#f0b323" stroke-width="3"/></svg>`,
+ 10: `<svg viewBox="0 0 120 90" role="img" aria-label="Tank Top Wanita"><path d="M40 8l-4 28-6 46h60l-6-46-4-28h-8c-2 10-6 16-12 16s-10-6-12-16z" fill="#d9577f" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><path d="M36 62h48" stroke="#f0b323" stroke-width="4"/></svg>`,
+ 11: `<svg viewBox="0 0 120 90" role="img" aria-label="Jaket Windbreaker"><path d="M42 10L24 16 8 74h16l8-30v40h56V44l8 30h16L96 16 78 10 60 24z" fill="#3cb5a3" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M60 24v60" stroke="#1d2b4f" stroke-width="2.5"/><path d="M42 10l18 14L78 10" fill="#2f9e8f" stroke="#1d2b4f" stroke-width="2.5" stroke-linejoin="round"/><path d="M34 46h20M66 46h20" stroke="#f0b323" stroke-width="4" stroke-linecap="round"/></svg>`,
+ 12: `<svg viewBox="0 0 120 90" role="img" aria-label="Kaos Kaki Sport"><path d="M44 10h26v36l22 12c8 5 6 22-6 22H50c-8 0-12-6-12-14z" fill="#fff" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><path d="M44 18h26M44 26h26" stroke="#f0b323" stroke-width="4"/></svg>`,
+ 13: `<svg viewBox="0 0 120 90" role="img" aria-label="Topi Lari"><path d="M20 62C20 30 38 18 58 18s34 12 34 44z" fill="#fff" stroke="#1d2b4f" stroke-width="3"/><path d="M86 60c12-2 26 2 30 9-12 6-28 3-34-3z" fill="#1d2b4f"/><path d="M20 62h68v6H20z" fill="#1d2b4f"/><path d="M58 18v44M40 24v38M76 24v38" stroke="#cfd6e4" stroke-width="2"/><circle cx="58" cy="16" r="3" fill="#f0b323"/></svg>`,
+ 14: `<svg viewBox="0 0 120 90" role="img" aria-label="Tas Gym Duffel"><path d="M44 28C44 10 76 10 76 28" fill="none" stroke="#1d2b4f" stroke-width="4" stroke-linecap="round"/><rect x="14" y="28" width="92" height="46" rx="20" fill="#1d2b4f" stroke="#12182b" stroke-width="3"/><path d="M14 50h92" stroke="#f0b323" stroke-width="3"/><rect x="50" y="44" width="20" height="12" rx="3" fill="#f0b323"/></svg>`,
+ 15: `<svg viewBox="0 0 120 90" role="img" aria-label="Tali Skipping"><rect x="14" y="52" width="14" height="30" rx="6" fill="#d9577f" stroke="#1d2b4f" stroke-width="2.5"/><rect x="92" y="52" width="14" height="30" rx="6" fill="#d9577f" stroke="#1d2b4f" stroke-width="2.5"/><path d="M21 52C16 4 104 4 99 52" fill="none" stroke="#1d2b4f" stroke-width="3.5"/></svg>`,
+ 16: `<svg viewBox="0 0 120 90" role="img" aria-label="Raket Badminton"><g transform="rotate(40 60 45)"><path d="M60 4c-14 0-22 10-22 24s8 22 22 22 22-8 22-22S74 4 60 4z" fill="#e4f6f3" stroke="#1d2b4f" stroke-width="4"/><path d="M46 12v30M60 6v42M74 12v30M42 22h36M42 34h36" stroke="#8a93ad" stroke-width="1.5"/><path d="M60 50v14" stroke="#1d2b4f" stroke-width="4"/><rect x="55" y="62" width="10" height="16" rx="3" fill="#f0b323" stroke="#1d2b4f" stroke-width="2.5"/></g></svg>`,
+ 17: `<svg viewBox="0 0 120 90" role="img" aria-label="Sepatu Training Wanita"><path d="M10 64V48c0-4 4-6 8-4l16 8c6-6 12-12 16-20l11 6c3 10 16 15 34 19 9 2 13 6 13 11v6H10z" fill="#fff" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><rect x="8" y="66" width="106" height="10" rx="5" fill="#d9577f" stroke="#1d2b4f" stroke-width="2"/><path d="M52 40l6 4M58 34l6 4M64 42l-5-4" stroke="#1d2b4f" stroke-width="2.5" stroke-linecap="round"/><path d="M20 56c20 4 44 2 66-4" stroke="#d9577f" stroke-width="4" stroke-linecap="round" fill="none"/></svg>`,
+ 18: `<svg viewBox="0 0 120 90" role="img" aria-label="Sepatu Futsal Pria"><path d="M10 64V48c0-4 4-6 8-4l16 8c6-6 12-12 16-20l11 6c3 10 16 15 34 19 9 2 13 6 13 11v6H10z" fill="#2c3f70" stroke="#1d2b4f" stroke-width="3" stroke-linejoin="round"/><rect x="8" y="66" width="106" height="10" rx="5" fill="#12182b" stroke="#1d2b4f" stroke-width="2"/><path d="M52 40l6 4M58 34l6 4M64 42l-5-4" stroke="#1d2b4f" stroke-width="2.5" stroke-linecap="round"/><path d="M20 56c20 4 44 2 66-4" stroke="#f0b323" stroke-width="4" stroke-linecap="round" fill="none"/></svg>`
+};
+
+/* ============ STRUCT ============
+   JavaScript tidak punya struct bawaan, jadi struct dibuat
+   dengan fungsi yang mengembalikan record dengan field tetap. */
+function Produk(id, nama, kategori, untuk, harga, stok){ return {id, nama, kategori, untuk, harga, stok, gambar: GAMBAR[id]}; }
+
+/* ============ ARRAY ============ */
+const katalog = [
+  Produk(1, "Jersey Dri-Fit Pria",     "Atasan",    "Pria",   129000, 40),
+  Produk(2, "Sports Bra Wanita",       "Atasan",    "Wanita", 109000, 35),
+  Produk(3, "Celana Training Pria",    "Bawahan",   "Pria",   149000, 30),
+  Produk(4, "Legging Olahraga Wanita", "Bawahan",   "Wanita", 139000, 28),
+  Produk(5, "Sepatu Lari",             "Sepatu",    "Unisex", 459000, 14),
+  Produk(6, "Matras Yoga",             "Alat",      "Unisex", 119000, 22),
+  Produk(7, "Dumbbell 5 kg",           "Alat",      "Unisex", 189000, 16),
+  Produk(8, "Botol Minum Sport",       "Aksesoris", "Unisex", 49000,  50),
+  Produk(9, "Celana Pendek Lari Pria", "Bawahan", "Pria", 89000, 45),
+  Produk(10, "Tank Top Wanita", "Atasan", "Wanita", 79000, 38),
+  Produk(11, "Jaket Windbreaker", "Outer", "Unisex", 259000, 18),
+  Produk(12, "Kaos Kaki Sport", "Aksesoris", "Unisex", 39000, 60),
+  Produk(13, "Topi Lari", "Aksesoris", "Unisex", 69000, 32),
+  Produk(14, "Tas Gym Duffel", "Aksesoris", "Unisex", 179000, 20),
+  Produk(15, "Tali Skipping", "Alat", "Unisex", 29000, 55),
+  Produk(16, "Raket Badminton", "Alat", "Unisex", 229000, 24),
+  Produk(17, "Sepatu Training Wanita", "Sepatu", "Wanita", 389000, 15),
+  Produk(18, "Sepatu Futsal Pria", "Sepatu", "Pria", 349000, 12)
+];
+
+/* ============ POINTER ============
+   tampil[] berisi referensi (pointer) ke struct di katalog[].
+   Alamat simulasi dibuat supaya pointer terlihat di log. */
+let tampil = katalog.map(p => p);
+const alamat = new Map(); let nextAddr = 0x1000;
+function ptr(p){
+  if(!alamat.has(p)){ alamat.set(p, "0x" + nextAddr.toString(16).toUpperCase()); nextAddr += 0x20; }
+  return alamat.get(p);
+}
+katalog.forEach(ptr);
+
+const $ = id => document.getElementById(id);
+const rp = n => "Rp" + n.toLocaleString("id-ID");
+let hasil = new Set();
+
+function tulis(el, teks, kelas){
+  const d = document.createElement("div");
+  d.textContent = teks; if(kelas) d.className = kelas;
+  el.appendChild(d); el.scrollTop = el.scrollHeight;
+}
+function mulaiLog(el){ el.innerHTML = ""; }
+
+/* ============ TAMPILAN KATALOG ============ */
+const gbr = p => p.gambar.startsWith("<svg") ? p.gambar : `<img src="${p.gambar}" alt="${p.nama}">`;
+/* Pengelompokan produk per jenis (kategori → jenis) */
+const JENIS = {Atasan:"Pakaian Olahraga", Bawahan:"Pakaian Olahraga", Outer:"Pakaian Olahraga", Sepatu:"Sepatu Olahraga", Aksesoris:"Aksesori Olahraga", Alat:"Peralatan & Alat Olahraga"};
+const URUTAN_JENIS = ["Pakaian Olahraga", "Sepatu Olahraga", "Aksesori Olahraga", "Peralatan & Alat Olahraga"];
+function render(){
+  const g = $("grid"); g.innerHTML = "";
+  URUTAN_JENIS.forEach(jenis => {
+    const isi = [];                                   // pasangan [pointer ke produk, indeks di tampil[]]
+    tampil.forEach((p, i) => { if(JENIS[p.kategori] === jenis) isi.push([p, i]); });
+    if(!isi.length) return;
+    const sec = document.createElement("div"); sec.className = "grup";
+    sec.innerHTML = `<h3 class="gh">${jenis} <span>${isi.length} produk</span></h3>`;
+    const wadah = document.createElement("div"); wadah.className = "grid";
+    isi.forEach(([p, i]) => {
+      const d = document.createElement("div");
+      d.className = "item" + (hasil.has(p.id) ? " hit" : "");
+      d.innerHTML = `<div class="tag"><span>tampil[${i}]</span><span>${ptr(p)}</span></div>
+        <div class="thumb">${gbr(p)}</div>
+        <div class="b"><h3>${p.nama}</h3><small>${p.kategori} · ${p.untuk} · stok ${p.stok}</small>
+        <div class="price">${rp(p.harga)}</div>
+        <button data-id="${p.id}" ${p.stok < 1 ? "disabled" : ""}>${p.stok < 1 ? "Stok habis" : "Tambah ke keranjang"}</button></div>`;
+      wadah.appendChild(d);
+    });
+    sec.appendChild(wadah); g.appendChild(sec);
+  });
+}
+
+/* ============ SORTING ============ */
+// true jika a harus berada SETELAH b
+function sesudah(a, b, key, asc){
+  const r = typeof a[key] === "string" ? a[key].localeCompare(b[key]) : a[key] - b[key];
+  return asc ? r > 0 : r < 0;
+}
+
+function urutkan(){
+  const key = $("kunci").value, asc = $("arah").value === "asc", metode = $("metodeSort").value;
+  const L = $("logSort"); mulaiLog(L); hasil = new Set();
+  const a = tampil, n = a.length;
+  const snap = () => a.map(p => p[key]).join(", ");
+  let banding = 0, tukar = 0;
+
+  tulis(L, `Metode: ${metode === "bubble" ? "Bubble Sort" : "Selection Sort"} | kunci: ${key} | ${asc ? "naik" : "turun"}`, "h");
+  tulis(L, `Awal: [${snap()}]`);
+
+  if(metode === "bubble"){
+    for(let i = 0; i < n - 1; i++){
+      let ada = false;
+      tulis(L, `\nPass ${i + 1}`, "h");
+      for(let j = 0; j < n - 1 - i; j++){
+        banding++;
+        const x = a[j], y = a[j + 1], s = sesudah(x, y, key, asc);
+        tulis(L, `  bandingkan a[${j}]=${x.nama} (${x[key]}) dengan a[${j + 1}]=${y.nama} (${y[key]}) → ${s ? "tukar" : "tetap"}`, s ? "t" : "");
+        if(s){
+          [a[j], a[j + 1]] = [y, x]; tukar++; ada = true;
+          tulis(L, `    tukar pointer ${ptr(x)} ↔ ${ptr(y)}  → [${snap()}]`, "ok");
+        }
+      }
+      if(!ada){ tulis(L, "  tidak ada pertukaran, sorting berhenti lebih awal", "sum"); break; }
+    }
+  } else {
+    for(let i = 0; i < n - 1; i++){
+      let m = i;
+      tulis(L, `\nPutaran ${i + 1}: cari elemen terkecil/terbesar mulai a[${i}]`, "h");
+      for(let j = i + 1; j < n; j++){
+        banding++;
+        const baru = sesudah(a[m], a[j], key, asc);
+        tulis(L, `  bandingkan kandidat a[${m}]=${a[m].nama} (${a[m][key]}) dengan a[${j}]=${a[j].nama} (${a[j][key]}) → ${baru ? "kandidat baru a[" + j + "]" : "kandidat tetap"}`, baru ? "t" : "");
+        if(baru) m = j;
+      }
+      if(m !== i){
+        const x = a[i], y = a[m];
+        [a[i], a[m]] = [y, x]; tukar++;
+        tulis(L, `  tukar pointer a[${i}] ${ptr(x)} ↔ a[${m}] ${ptr(y)}  → [${snap()}]`, "ok");
+      } else tulis(L, `  a[${i}] sudah di posisi benar`);
+    }
+  }
+  tulis(L, `\nSelesai: ${banding} perbandingan, ${tukar} pertukaran`, "sum");
+  tulis(L, `Hasil: [${snap()}]`, "sum");
+  render();
+}
+
+/* ============ SEARCHING ============ */
+function cari(){
+  const q = $("q").value.trim(), L = $("logCari"); mulaiLog(L); hasil = new Set();
+  if(!q){ tulis(L, "Isi kata kunci dulu.", "no"); render(); return; }
+  const a = tampil, n = a.length;
+
+  if($("metodeCari").value === "linear"){
+    const kata = q.toLowerCase();
+    tulis(L, `Linear Search: nama mengandung "${q}"`, "h");
+    let langkah = 0;
+    for(let i = 0; i < n; i++){
+      langkah++;
+      const cocok = a[i].nama.toLowerCase().includes(kata);
+      tulis(L, `  cek a[${i}] ${ptr(a[i])} → ${a[i].nama}: ${cocok ? "COCOK" : "tidak cocok"}`, cocok ? "ok" : "");
+      if(cocok) hasil.add(a[i].id);
+    }
+    tulis(L, `\nSelesai: ${langkah} elemen diperiksa, ${hasil.size} ditemukan`, "sum");
+  } else {
+    const target = Number(q);
+    tulis(L, `Binary Search: harga = ${isNaN(target) ? q : rp(target)}`, "h");
+    if(isNaN(target)){ tulis(L, "Masukkan harga berupa angka, mis. 459000.", "no"); render(); return; }
+    const urut = a.every((p, i) => i === 0 || a[i - 1].harga <= p.harga);
+    if(!urut){
+      tulis(L, "Data belum terurut naik berdasarkan harga.", "no");
+      tulis(L, "Urutkan dulu: kunci Harga, arah Naik, lalu cari lagi.", "no");
+      render(); return;
+    }
+    let lo = 0, hi = n - 1, langkah = 0, ketemu = -1;
+    while(lo <= hi){
+      langkah++;
+      const mid = Math.floor((lo + hi) / 2);
+      tulis(L, `  langkah ${langkah}: lo=${lo}, hi=${hi}, mid=${mid} → ${a[mid].nama} (${rp(a[mid].harga)})`);
+      if(a[mid].harga === target){ ketemu = mid; tulis(L, `    harga sama, ditemukan di a[${mid}] ${ptr(a[mid])}`, "ok"); break; }
+      else if(a[mid].harga < target){ lo = mid + 1; tulis(L, "    harga tengah lebih kecil → cari di kanan", "t"); }
+      else { hi = mid - 1; tulis(L, "    harga tengah lebih besar → cari di kiri", "t"); }
+    }
+    if(ketemu >= 0) hasil.add(a[ketemu].id); else tulis(L, "    rentang habis, harga tidak ada", "no");
+    tulis(L, `\nSelesai: ${langkah} langkah`, "sum");
+  }
+  render();
+}
+
+/* ============ KERANJANG: LINKED LIST (POINTER) ============
+   Simpul = struct { data, next }. next adalah pointer ke simpul berikutnya. */
+function Simpul(produk){ return {data: {produk, qty: 1}, next: null}; }
+let head = null;
+const ONGKIR = 15000, GRATIS_ONGKIR = 500000;
+
+function pesan(t, bad){ const e = $("pesan"); e.textContent = t; e.style.color = bad ? "var(--bad)" : "var(--ok)"; }
+function cariSimpul(id){ let cur = head; while(cur){ if(cur.data.produk.id === id) return cur; cur = cur.next; } return null; }
+
+function tambahKeranjang(p){
+  const s = cariSimpul(p.id);
+  if(s){
+    if(s.data.qty >= p.stok){ pesan(`Stok ${p.nama} hanya ${p.stok}.`, true); return; }
+    s.data.qty++;
+  } else {
+    const baru = Simpul(p);
+    if(!head) head = baru; else { let t = head; while(t.next) t = t.next; t.next = baru; }
+  }
+  pesan(`${p.nama} masuk keranjang.`); renderKeranjang();
+}
+function ubahQty(id, d){
+  const s = cariSimpul(id); if(!s) return;
+  const q = s.data.qty + d;
+  if(q < 1){ hapusKeranjang(id); return; }
+  if(q > s.data.produk.stok){ pesan(`Stok ${s.data.produk.nama} hanya ${s.data.produk.stok}.`, true); return; }
+  s.data.qty = q; renderKeranjang();
+}
+function hapusKeranjang(id){
+  let cur = head, prev = null;
+  while(cur && cur.data.produk.id !== id){ prev = cur; cur = cur.next; }
+  if(!cur) return;
+  if(prev) prev.next = cur.next; else head = cur.next;
+  renderKeranjang();
+}
+function hitung(){
+  let sub = 0, jml = 0, cur = head;
+  while(cur){ sub += cur.data.produk.harga * cur.data.qty; jml += cur.data.qty; cur = cur.next; }
+  const ongkir = jml === 0 ? 0 : (sub >= GRATIS_ONGKIR ? 0 : ONGKIR);
+  return {sub, jml, ongkir, total: sub + ongkir};
+}
+function renderKeranjang(){
+  const c = $("chain"); c.innerHTML = "";
+  const h = document.createElement("span"); h.textContent = "head →"; h.className = "arrow"; c.appendChild(h);
+  let cur = head;
+  while(cur){
+    const p = cur.data.produk;
+    const d = document.createElement("div"); d.className = "node";
+    d.innerHTML = `<div class="thumb">${gbr(p)}</div><b>${p.nama}</b><br>${rp(p.harga)}<br>alamat ${ptr(p)}<br>next: ${cur.next ? ptr(cur.next.data.produk) : "NULL"}
+      <div class="qty"><button class="alt" data-min="${p.id}" aria-label="Kurangi">−</button><b>${cur.data.qty}</b><button class="alt" data-plus="${p.id}" aria-label="Tambah">+</button><button class="alt" data-hapus="${p.id}">Hapus</button></div>`;
+    c.appendChild(d);
+    const ar = document.createElement("span"); ar.className = "arrow"; ar.textContent = "→"; c.appendChild(ar);
+    cur = cur.next;
+  }
+  const nl = document.createElement("span"); nl.className = "null"; nl.textContent = "NULL"; c.appendChild(nl);
+  const t = hitung();
+  $("ringkasan").innerHTML = t.jml
+    ? `<div><span>Subtotal (${t.jml} barang)</span><span>${rp(t.sub)}</span></div>
+       <div><span>Ongkir${t.ongkir === 0 ? " (gratis)" : ""}</span><span>${rp(t.ongkir)}</span></div>
+       <div class="tot"><span>Total</span><span>${rp(t.total)}</span></div>
+       <div class="msg">Gratis ongkir untuk belanja mulai ${rp(GRATIS_ONGKIR)}.</div>`
+    : `<div class="msg">Keranjang masih kosong. Tekan Tambah ke keranjang pada produk.</div>`;
+}
+
+/* ============ CHECKOUT + STRUK ============
+   Transaksi juga struct. riwayat[] adalah array transaksi. */
+function Transaksi(no, waktu, pembeli, alamat, metode, item, sub, ongkir, total){
+  return {no, waktu, pembeli, alamat, metode, item, sub, ongkir, total};
+}
+const riwayat = []; let noUrut = 0;
+
+function checkout(){
+  const nama = $("nama").value.trim(), almt = $("alamat").value.trim();
+  if(!head){ pesan("Keranjang masih kosong.", true); return; }
+  if(!nama || !almt){ pesan("Isi nama pembeli dan alamat pengiriman dulu.", true); return; }
+  const h = hitung(), item = [];
+  let cur = head;
+  while(cur){                                   // telusuri linked list
+    const p = cur.data.produk, q = cur.data.qty;
+    item.push({nama: p.nama, harga: p.harga, qty: q});
+    p.stok -= q;                                // stok berkurang lewat pointer ke struct asli
+    cur = cur.next;
+  }
+  const w = new Date(), kode = w.toISOString().slice(0, 10).replace(/-/g, "");
+  noUrut++;
+  const t = Transaksi(`KS-${kode}-${String(noUrut).padStart(3, "0")}`, w, nama, almt, $("bayar").value, item, h.sub, h.ongkir, h.total);
+  riwayat.push(t);
+  head = null;                                  // keranjang dikosongkan
+  pesan("");
+  render(); renderKeranjang(); renderRiwayat(); tampilStruk(t);
+}
+
+function tampilStruk(t){
+  const tgl = t.waktu.toLocaleString("id-ID", {dateStyle: "medium", timeStyle: "short"});
+  $("strukIsi").innerHTML = `<h3>Kirana Sport Hub</h3><div class="c">Struk pembelian</div><hr>
+    <div class="r"><span>No</span><span>${t.no}</span></div>
+    <div class="r"><span>Tanggal</span><span>${tgl}</span></div>
+    <div class="r"><span>Pembeli</span><span>${t.pembeli}</span></div>
+    <div class="r"><span>Alamat</span><span style="text-align:right">${t.alamat}</span></div><hr>
+    ${t.item.map(i => `<div>${i.nama}</div><div class="r"><span>${i.qty} × ${rp(i.harga)}</span><span>${rp(i.qty * i.harga)}</span></div>`).join("")}<hr>
+    <div class="r"><span>Subtotal</span><span>${rp(t.sub)}</span></div>
+    <div class="r"><span>Ongkir</span><span>${rp(t.ongkir)}</span></div>
+    <div class="r big"><span>TOTAL</span><span>${rp(t.total)}</span></div><hr>
+    <div class="r"><span>Pembayaran</span><span>${t.metode}</span></div>
+    <div class="c" style="margin-top:10px">Terima kasih sudah berbelanja!</div>`;
+  $("struk").showModal();
+}
+
+function renderRiwayat(){
+  const e = $("riwayat");
+  if(!riwayat.length){ e.innerHTML = `<span class="msg">Belum ada transaksi.</span>`; return; }
+  e.innerHTML = "";
+  riwayat.forEach((t, i) => {
+    const d = document.createElement("div"); d.className = "rw";
+    d.innerHTML = `<span><b>${t.no}</b> · ${t.pembeli} · ${rp(t.total)}</span><button class="alt" data-struk="${i}">Lihat struk</button>`;
+    e.appendChild(d);
+  });
+}
+
+/* ============ EVENT ============ */
+$("btnSort").onclick = urutkan;
+$("btnCari").onclick = cari;
+$("q").addEventListener("keydown", e => { if(e.key === "Enter") cari(); });
+$("btnReset").onclick = () => { tampil = katalog.map(p => p); hasil = new Set(); render(); tulis($("logSort"), "\nUrutan dikembalikan ke array awal (katalog).", "sum"); };
+$("metodeCari").onchange = () => { $("q").placeholder = $("metodeCari").value === "linear" ? "mis. sepatu" : "mis. 459000"; };
+$("grid").onclick = e => { const id = e.target.dataset.id; if(id) tambahKeranjang(katalog.find(p => p.id == id)); };
+$("chain").onclick = e => {
+  const d = e.target.dataset;
+  if(d.plus) ubahQty(Number(d.plus), 1);
+  else if(d.min) ubahQty(Number(d.min), -1);
+  else if(d.hapus) hapusKeranjang(Number(d.hapus));
+};
+$("riwayat").onclick = e => { const i = e.target.dataset.struk; if(i !== undefined) tampilStruk(riwayat[i]); };
+$("btnCheckout").onclick = checkout;
+$("btnCetak").onclick = () => window.print();
+$("btnTutup").onclick = () => $("struk").close();
+document.querySelectorAll("[data-clear]").forEach(b => b.onclick = () => { $(b.dataset.clear).innerHTML = ""; });
+
+render(); renderKeranjang(); renderRiwayat();
+</script>
+</body>
+</html>
